@@ -29,13 +29,32 @@
     },
 
     index(b){
-      const rows = b.rows.map(r => `
-        <a class="idx-row" href="javascript:scrollToBlock(${r.targetIdx})">
-          <span class="idx-n mono">${r.n}</span>
-          <span class="idx-t">${r.t}</span>
-          <span class="idx-s">${r.s}</span>
-          <span class="idx-arr">↗</span>
-        </a>`).join('');
+      const rows = b.rows.map(r => {
+        let subsHtml = '';
+        if (r.subs) {
+          subsHtml = `<div class="idx-subs">` + r.subs.map(s => `
+            <a class="idx-sub" href="javascript:scrollToBlock(${s.to})">
+              <span class="idx-s">${s.s}</span>
+              <span class="idx-arr">↗</span>
+            </a>`).join('') + `</div>`;
+        } else {
+          subsHtml = `<div class="idx-subs">
+            <a class="idx-sub" href="javascript:scrollToBlock(${r.targetIdx})">
+              <span class="idx-s">${r.s}</span>
+              <span class="idx-arr">↗</span>
+            </a></div>`;
+        }
+
+        return `
+          <div class="idx-row">
+            <div class="idx-main">
+              <span class="idx-n mono">${r.n}</span>
+              <span class="idx-t">${r.t}</span>
+            </div>
+            ${subsHtml}
+          </div>`;
+      }).join('');
+
       return `<section class="block index-block">
         <div class="container">
           <div class="kicker mono">${b.eyebrow}</div>
