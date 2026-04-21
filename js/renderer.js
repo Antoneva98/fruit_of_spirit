@@ -30,7 +30,7 @@
 
     index(b){
       const rows = b.rows.map(r => `
-        <a class="idx-row" href="#">
+        <a class="idx-row" href="javascript:scrollToBlock(${r.targetIdx})">
           <span class="idx-n mono">${r.n}</span>
           <span class="idx-t">${r.t}</span>
           <span class="idx-s">${r.s}</span>
@@ -282,6 +282,13 @@
         el.style.fontSize = newSize + 'px';
       }
     });
+  }
+
+  window.scrollToBlock = function(idx) {
+    const blocksEls = document.querySelectorAll('.block');
+    if(blocksEls[idx]) {
+      blocksEls[idx].scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   // ---------------- font / weight setup ----------------
