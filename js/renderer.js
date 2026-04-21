@@ -269,11 +269,10 @@
       const availableWidth = window.innerWidth - (gut * 2);
 
       let fontSize = parseFloat(window.getComputedStyle(el).fontSize);
-      const minSize = 22; // minimal legible size for headers
-
-      while ((el.scrollWidth > availableWidth || el.offsetWidth > availableWidth) && fontSize > minSize) {
-        fontSize -= 1;
-        el.style.fontSize = fontSize + 'px';
+      if (el.scrollWidth > availableWidth) {
+        const ratio = availableWidth / el.scrollWidth;
+        const newSize = Math.max(14, Math.floor(fontSize * ratio));
+        el.style.fontSize = newSize + 'px';
       }
     });
   }
