@@ -258,25 +258,24 @@
 
   // ---------------- smart scaling ----------------
   function fitText(el){
-    // Reset any previous fitText scaling
-    el.style.fontSize = '';
-    
-    // We need to measure against parent's inner width (accounting for padding)
-    const parent = el.parentElement;
-    const style = window.getComputedStyle(parent);
-    const parentPadding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
-    const availableWidth = parent.clientWidth - parentPadding;
+    // Ensure fonts are loaded for accurate measurement
+    document.fonts.ready.then(() => {
+      // Reset any previous fitText scaling
+      el.style.fontSize = '';
+      
+      // We measure against the Viewport width to be safe from expanding containers
+      // Subtracting a safe margin (gutter * 2)
+      const gut = window.innerWidth < 820 ? 22 : 40; 
+      const availableWidth = window.innerWidth - (gut * 2);
 
-    let fontSize = parseFloat(window.getComputedStyle(el).fontSize);
-    const minSize = 24; // minimal legible size for headers
+      let fontSize = parseFloat(window.getComputedStyle(el).fontSize);
+      const minSize = 22; // minimal legible size for headers
 
-    // It is possible scrollWidth equals clientWidth if no overflow, 
-    // but headers often have white-space: nowrap or just long words.
-    // We check if the element's horizontal scroll width exceeds container.
-    while ((el.scrollWidth > availableWidth || el.offsetWidth > availableWidth) && fontSize > minSize) {
-      fontSize -= 1;
-      el.style.fontSize = fontSize + 'px';
-    }
+      while ((el.scrollWidth > availableWidth || el.offsetWidth > availableWidth) && fontSize > minSize) {
+        fontSize -= 1;
+        el.style.fontSize = fontSize + 'px';
+      }
+    });
   }
 
   // ---------------- font / weight setup ----------------

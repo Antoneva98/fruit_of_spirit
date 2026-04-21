@@ -681,6 +681,7 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
 .lead-right .lead-img{order:2}
 .lead-right .lead-text{order:1}
 .lead-img{aspect-ratio:4/5;width:100%}
+.lead-text{min-width:0;max-width:100%}
 .lead-text p:first-of-type{
   font-family:var(--serif);
   font-size:clamp(18px,1.6vw,22px);
@@ -775,6 +776,7 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
   padding:6px 10px;border-radius:99px;font-size:10px;
 }
 .split-text p{font-size:clamp(15px,1.1vw,17px);line-height:1.6}
+.split-text{min-width:0;max-width:100%}
 
 /* ============== PULL ============== */
 .pull{
@@ -954,6 +956,7 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
 }
 .fruit-greek{color:var(--ink-soft);font-size:13px;letter-spacing:0.18em;margin-bottom:8px}
 .fruit-text .rule{margin:18px 0 26px}
+.fruit-text{min-width:0;max-width:100%}
 .fruit-body p{
   font-family:var(--serif);
   font-size:clamp(17px,1.3vw,20px);
