@@ -263,15 +263,22 @@
       // Reset any previous fitText scaling
       el.style.fontSize = '';
       
-      // We measure against the Viewport width to be safe from expanding containers
-      // Subtracting a safe margin (gutter * 2)
-      const gut = window.innerWidth < 820 ? 22 : 40; 
-      const availableWidth = window.innerWidth - (gut * 2);
+      // On desktop, we MUST measure against the parent container (the grid column)
+      // because window.innerWidth is shared by two columns.
+      // On mobile, parent is full width anyway.
+      const parent = el.parentElement;
+      const style = window.getComputedStyle(parent);
+      const parentPadding = parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      const availableWidth = parent.clientWidth - parentPadding;
 
       let fontSize = parseFloat(window.getComputedStyle(el).fontSize);
-      if (el.scrollWidth > availableWidth) {
-        const ratio = availableWidth / el.scrollWidth;
-        const newSize = Math.max(14, Math.floor(fontSize * ratio));
+      const minSize = 14; 
+
+      // Mathematical precision with a small 2% safety buffer for rendering variations
+      const currentWidth = Math.max(el.scrollWidth, el.offsetWidth);
+      if (currentWidth > availableWidth) {
+        const ratio = availableWidth / currentWidth;
+        const newSize = Math.max(minSize, Math.floor(fontSize * ratio * 0.98));
         el.style.fontSize = newSize + 'px';
       }
     });
@@ -360,10 +367,18 @@
   }
 
   // ---------------- init ----------------
-  if('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.scrollTo(0,0);
   appendCycle();
   appendCycle(); // pre-render two cycles for smooth infinite feel
+
+  // Handle resize (with debounce for performance)
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(() => {
+      document.querySelectorAll('.mega, .fruit-name, .display, .pull-a').forEach(fitText);
+    }, 150);
+  });
 
   window.addEventListener('scroll', checkInfinite, {passive:true});
   requestAnimationFrame(tickParallax);
