@@ -1040,14 +1040,22 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
   /* index / fruit-index */
   .index-list{margin-top:24px}
   .idx-group{padding:4px 0}
-  .idx-line{grid-template-columns:40px 1fr; gap:12px; padding:18px 0}
-  .idx-line:hover{padding-left:0; padding-right:0; background:transparent}
+  .idx-line{
+    display:flex; flex-wrap:wrap; align-items:baseline; 
+    gap:4px 12px; padding:18px 0;
+  }
+  .idx-line:hover{padding:18px 0; background:transparent}
+  .idx-n-col{width:32px; flex-shrink:0}
   .idx-n{font-size:11px}
-  .idx-t{font-size:26px;line-height:0.95}
-  .is-sub .idx-t{margin-left:14px; font-size:22px}
-  .idx-link-col{grid-column:2; margin-top:8px}
-  .idx-s{text-align:left;font-size:10px}
-  .idx-arr{font-size:14px}
+  .idx-t{width:calc(100% - 44px); font-size:24px; line-height:1}
+  .is-sub .idx-t{width:calc(100% - 74px); margin-left:30px; font-size:20px}
+  .idx-s{
+    width:100%; margin-left:44px; margin-top:4px; 
+    font-size:10px; display:flex; align-items:center; gap:8px;
+    order:3;
+  }
+  .is-sub .idx-s{margin-left:74px}
+  .idx-arr{font-size:12px; margin-left:auto; order:4}
 
   .fidx-list{margin-top:22px}
   .fidx-row{grid-template-columns:36px 1fr;gap:12px;padding:18px 0;align-items:baseline}
