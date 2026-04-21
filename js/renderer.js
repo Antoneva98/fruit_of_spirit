@@ -31,20 +31,14 @@
     index(b){
       const groups = b.rows.map(row => {
         const lines = row.lines.map((line, idx) => `
-          <div class="idx-line ${idx === 0 ? 'is-first' : 'is-sub'}">
+          <a class="idx-line ${idx === 0 ? 'is-first' : 'is-sub'}" href="javascript:scrollToBlock(${line.to})">
             <div class="idx-n-col">
               ${idx === 0 ? `<span class="idx-n mono">${row.n}</span>` : ''}
             </div>
-            <div class="idx-title-col">
-              <span class="idx-t">${line.t}</span>
-            </div>
-            <div class="idx-link-col">
-              <a class="idx-link" href="javascript:scrollToBlock(${line.to})">
-                <span class="idx-s">${line.s}</span>
-                <span class="idx-arr">↗</span>
-              </a>
-            </div>
-          </div>
+            <span class="idx-t">${line.t}</span>
+            <span class="idx-s">${line.s}</span>
+            <span class="idx-arr">↗</span>
+          </a>
         `).join('');
         return `<div class="idx-group">${lines}</div>`;
       }).join('');
