@@ -29,36 +29,32 @@
     },
 
     index(b){
-      const rows = b.rows.map(r => {
-        let subsHtml = '';
-        if (r.subs) {
-          subsHtml = `<div class="idx-subs">` + r.subs.map(s => `
-            <a class="idx-sub" href="javascript:scrollToBlock(${s.to})">
-              <span class="idx-s">${s.s}</span>
-              <span class="idx-arr">↗</span>
-            </a>`).join('') + `</div>`;
-        } else {
-          subsHtml = `<div class="idx-subs">
-            <a class="idx-sub" href="javascript:scrollToBlock(${r.targetIdx})">
-              <span class="idx-s">${r.s}</span>
-              <span class="idx-arr">↗</span>
-            </a></div>`;
-        }
-
-        return `
-          <div class="idx-row">
-            <div class="idx-main">
-              <span class="idx-n mono">${r.n}</span>
-              <span class="idx-t">${r.t}</span>
+      const groups = b.rows.map(row => {
+        const lines = row.lines.map((line, idx) => `
+          <div class="idx-line ${idx === 0 ? 'is-first' : 'is-sub'}">
+            <div class="idx-n-col">
+              ${idx === 0 ? `<span class="idx-n mono">${row.n}</span>` : ''}
             </div>
-            ${subsHtml}
-          </div>`;
+            <div class="idx-title-col">
+              <span class="idx-t">${line.t}</span>
+            </div>
+            <div class="idx-link-col">
+              <a class="idx-link" href="javascript:scrollToBlock(${line.to})">
+                <span class="idx-s">${line.s}</span>
+                <span class="idx-arr">↗</span>
+              </a>
+            </div>
+          </div>
+        `).join('');
+        return `<div class="idx-group">${lines}</div>`;
       }).join('');
 
       return `<section class="block index-block">
         <div class="container">
           <div class="kicker mono">${b.eyebrow}</div>
-          <div class="index-list">${rows}</div>
+          <div class="index-list">
+            ${groups}
+          </div>
         </div>
       </section>`;
     },
