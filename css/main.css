@@ -947,9 +947,9 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
   font-family:var(--display);
   font-weight:300;
   font-size:clamp(56px,9vw,140px);
-  line-height:0.9;
+  line-height:1.05;
   letter-spacing:-0.04em;
-  margin:14px 0 8px;
+  margin:14px 0 20px;
   color:var(--ink);
   white-space:nowrap;
   transition:font-size 0.2s ease-out;
