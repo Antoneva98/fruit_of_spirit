@@ -188,11 +188,11 @@
 
     'fruit-index'(b){
       const items = b.items.map(it => `
-        <div class="fidx-row">
+        <a class="fidx-row" href="javascript:scrollToBlock(${it.targetIdx})">
           <span class="fidx-n mono">${it.n}</span>
           <span class="fidx-name">${it.name}</span>
           <span class="fidx-greek mono">${it.greek}</span>
-        </div>`).join('');
+        </a>`).join('');
       return `<section class="block fruit-index">
         <div class="container">
           <div class="kicker mono">${b.eyebrow}</div>

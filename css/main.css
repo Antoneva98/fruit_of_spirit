@@ -915,7 +915,10 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
   align-items:baseline;gap:20px;
   padding:22px 0;
   border-bottom:1px solid var(--rule);
-  transition:padding 0.4s;
+  transition:padding 0.4s, background 0.2s;
+  text-decoration:none;
+  color:inherit;
+  cursor:pointer;
 }
 .fidx-row:hover{padding-left:14px;padding-right:14px;background:rgba(184,99,58,0.05)}
 .fidx-n{color:var(--accent);font-weight:600;font-size:13px;letter-spacing:0.18em}
