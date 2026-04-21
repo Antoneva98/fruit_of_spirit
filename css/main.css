@@ -616,7 +616,7 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
 }
 .idx-group{
   border-bottom: 1px solid var(--rule);
-  transition: background 0.4s ease;
+  padding: 12px 0;
 }
 .idx-line{
   display:grid;
@@ -626,10 +626,18 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
   text-decoration: none;
   color: inherit;
   transition: background 0.4s ease, padding 0.4s ease;
+  padding: 20px 0;
 }
 .idx-line:hover{background:rgba(184,99,58,0.06); padding-left:14px; padding-right:14px}
-.is-first{ padding: 28px 0 12px; }
-.is-sub{ padding: 6px 0 20px; }
+
+.is-sub{ padding: 8px 0; }
+.is-sub .idx-t{
+  font-size: clamp(22px, 3.2vw, 36px);
+  margin-left: 40px;
+  opacity: 0.9;
+}
+.is-sub .idx-s{ opacity: 0.7; }
+
 .idx-n{color:var(--accent);font-size:13px;font-weight:600}
 .idx-t{
   font-family:var(--display);
@@ -1033,10 +1041,11 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
   .index-list{margin-top:24px}
   .idx-group{padding:4px 0}
   .idx-line{grid-template-columns:40px 1fr; gap:12px; padding:18px 0}
+  .idx-line:hover{padding-left:0; padding-right:0; background:transparent}
   .idx-n{font-size:11px}
-  .idx-t{font-size:28px;line-height:0.95}
+  .idx-t{font-size:26px;line-height:0.95}
+  .is-sub .idx-t{margin-left:14px; font-size:22px}
   .idx-link-col{grid-column:2; margin-top:8px}
-  .idx-link{justify-content:flex-start; gap:12px}
   .idx-s{text-align:left;font-size:10px}
   .idx-arr{font-size:14px}
 
