@@ -211,11 +211,21 @@
     },
 
     accordion(b){
-      const body = b.body.map(p => {
-        const cls = p.startsWith('<em>') ? ' class="acc-q"' : '';
-        const text = p.replace(/^<em>(.*)<\/em>$/, '$1');
-        return `<p${cls}>${text}</p>`;
-      }).join('');
+      const body = b.body.map(p => `<p>${p}</p>`).join('');
+      const qaHtml = (b.qa || []).map(item => `
+        <div class="qa-item">
+          <button class="qa-trigger" onclick="this.parentElement.classList.toggle('open')">
+            <span class="qa-label mono">Запитання</span>
+            <span class="qa-q">${item.q}</span>
+            <span class="qa-icon">▾</span>
+          </button>
+          <div class="qa-answer">
+            <div class="qa-answer-inner">
+              <span class="qa-answer-label mono">Відповідь</span>
+              <p>${item.a}</p>
+            </div>
+          </div>
+        </div>`).join('');
       const openClass = b.openByDefault !== false ? ' open' : '';
       return `<section class="block accordion-block">
         <div class="container narrow">
@@ -226,7 +236,10 @@
               <span class="acc-icon">+</span>
             </button>
             <div class="acc-body">
-              <div class="acc-body-inner">${body}</div>
+              <div class="acc-body-inner">
+                ${body}
+                ${qaHtml}
+              </div>
             </div>
           </div>
         </div>

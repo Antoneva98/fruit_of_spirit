@@ -1194,7 +1194,40 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
 .acc-item.open .acc-body{max-height:3000px}
 .acc-body-inner{padding:0 0 30px}
 .acc-body p{font-size:clamp(16px,1.2vw,19px);line-height:1.7;margin-bottom:18px;color:var(--ink-2);max-width:68ch}
-.acc-body p.acc-q{font-style:italic;font-weight:600;color:var(--ink);border-left:3px solid var(--accent);padding-left:14px;margin-top:20px}
+
+/* ---- Q&A collapsible ---- */
+.qa-item{margin-top:24px;border-radius:10px;overflow:hidden;border:1px solid var(--rule)}
+.qa-trigger{
+  display:grid;grid-template-columns:auto 1fr auto;align-items:start;gap:10px;
+  width:100%;background:var(--paper-3);border:none;cursor:pointer;
+  padding:16px 18px;text-align:left;color:var(--ink);font-family:inherit;
+  transition:background 0.2s;
+}
+.qa-trigger:hover{background:var(--rule)}
+.qa-item.open .qa-trigger{background:var(--accent);color:var(--paper)}
+.qa-label{font-size:9px;letter-spacing:0.18em;padding-top:3px;white-space:nowrap;opacity:0.7}
+.qa-item.open .qa-label{color:var(--paper);opacity:0.75}
+.qa-q{font-size:clamp(15px,1.1vw,17px);line-height:1.45;font-weight:600;color:inherit}
+.qa-icon{
+  font-size:18px;padding-top:2px;color:var(--accent);
+  transition:transform 0.35s ease;flex-shrink:0;
+}
+.qa-item.open .qa-icon{transform:rotate(180deg);color:var(--paper)}
+.qa-answer{
+  max-height:0;overflow:hidden;
+  transition:max-height 0.45s cubic-bezier(0.4,0,0.2,1);
+  background:var(--paper);
+}
+.qa-item.open .qa-answer{max-height:800px}
+.qa-answer-inner{padding:20px 18px 22px}
+.qa-answer-label{
+  display:block;font-size:9px;letter-spacing:0.18em;
+  color:var(--accent);margin-bottom:10px;
+}
+.qa-answer-inner p{
+  font-size:clamp(15px,1.1vw,17px);line-height:1.7;
+  margin:0;color:var(--ink-2);max-width:62ch;
+}
 
 /* ============================================================
    FRUIT EXPAND (collapsible section inside fruit block)
