@@ -210,11 +210,62 @@
       </section>`;
     },
 
+    accordion(b){
+      const body = b.body.map(p => {
+        const cls = p.startsWith('<em>') ? ' class="acc-q"' : '';
+        const text = p.replace(/^<em>(.*)<\/em>$/, '$1');
+        return `<p${cls}>${text}</p>`;
+      }).join('');
+      const openClass = b.openByDefault !== false ? ' open' : '';
+      return `<section class="block accordion-block">
+        <div class="container narrow">
+          ${b.eyebrow ? `<div class="kicker mono">${b.eyebrow}</div>` : ''}
+          <div class="acc-item${openClass}">
+            <button class="acc-trigger" onclick="this.parentElement.classList.toggle('open')">
+              <span class="acc-title">${b.title}</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-body">
+              <div class="acc-body-inner">${body}</div>
+            </div>
+          </div>
+        </div>
+      </section>`;
+    },
+
     fruit(b){
       const body = b.body.map(p => `<p>${p}</p>`).join('');
+      let expandHtml = '';
+      if(b.expand){
+        const items = b.expand.items
+          ? `<ul>${b.expand.items.map(i => `<li>${i}</li>`).join('')}</ul>`
+          : '';
+        const extraBody = b.expand.body
+          ? b.expand.body.map(p => `<p>${p}</p>`).join('')
+          : '';
+        const reflect = b.expand.reflect
+          ? `<span class="reflect-kicker">Пороздумуйте</span>${b.expand.reflect.map(r => `<div class="reflect-item">${r}</div>`).join('')}`
+          : '';
+        expandHtml = `
+          <div class="fruit-expand">
+            <div class="fruit-expand-item">
+              <button class="fruit-expand-trigger" onclick="this.parentElement.classList.toggle('open')">
+                <span class="fruit-expand-label">${b.expand.label || 'Детальніше'}</span>
+                <span class="fruit-expand-icon">+</span>
+              </button>
+              <div class="fruit-expand-body">
+                <div class="fruit-expand-inner">
+                  ${items}
+                  ${extraBody}
+                  ${reflect}
+                </div>
+              </div>
+            </div>
+          </div>`;
+      }
       return `<section class="block fruit-block">
         <div class="container fruit-grid">
-          <div class="fruit-img" data-parallax="0.2">
+          <div class="fruit-img">
             <div class="px-img-inner" data-bg="${b.img}"></div>
             <div class="fruit-tag mono">№ ${b.n} / IX</div>
           </div>
@@ -224,6 +275,7 @@
             <div class="mono fruit-greek">${b.greek}</div>
             <div class="rule"></div>
             <div class="fruit-body">${body}</div>
+            ${expandHtml}
           </div>
         </div>
       </section>`;

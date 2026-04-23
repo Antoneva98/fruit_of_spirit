@@ -16,4 +16,14 @@ window.__resources = {
   "img_scene_drape_dark": "assets/images/img_scene_drape_dark.jpeg",
   "img_scene_dusk": "assets/images/img_scene_dusk.jpeg",
   "img_p01_0": "assets/images/img_p01_0.jpeg",
+  // ── New fruit illustrations (replace with your files) ──
+  "img_fruit_love":        "assets/images/img_fruit_love.jpeg",
+  "img_fruit_joy":         "assets/images/img_fruit_joy.jpeg",
+  "img_fruit_peace":       "assets/images/img_fruit_peace.jpeg",
+  "img_fruit_patience":    "assets/images/img_fruit_patience.jpeg",
+  "img_fruit_kindness":    "assets/images/img_fruit_kindness.jpeg",
+  "img_fruit_goodness":    "assets/images/img_fruit_goodness.jpeg",
+  "img_fruit_faith":       "assets/images/img_fruit_faith.jpeg",
+  "img_fruit_gentleness":  "assets/images/img_fruit_gentleness.jpeg",
+  "img_fruit_selfcontrol": "assets/images/img_fruit_selfcontrol.jpeg",
 };

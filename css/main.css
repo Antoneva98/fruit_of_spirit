@@ -543,7 +543,13 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
 [data-parallax].split-img,
 [data-parallax].fruit-img{position:relative;overflow:hidden}
 .lead-img,.split-img,.fruit-img{overflow:hidden;border-radius:6px;background:var(--paper-3)}
-.lead-img .px-img-inner,.split-img .px-img-inner,.fruit-img .px-img-inner{inset:-15% -10%}
+.lead-img .px-img-inner,.split-img .px-img-inner{inset:-15% -10%}
+.fruit-img .px-img-inner{
+  inset:0;
+  transform:none !important;
+  background-position:top center;
+  background-size:cover;
+}
 
 /* ============== COVER ============== */
 .cover{
@@ -954,7 +960,7 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
 }
 .fruit-img{aspect-ratio:3/4;position:relative}
 .fruit-tag{
-  position:absolute;top:14px;left:14px;
+  position:absolute;bottom:14px;left:14px;
   background:rgba(251,245,230,0.92);
   color:var(--ink);
   padding:7px 12px;border-radius:99px;font-size:10px;font-weight:500;
@@ -1162,5 +1168,69 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
 
 /* selection */
 ::selection{background:var(--accent);color:#fff}
+
+/* ============================================================
+   ACCORDION BLOCK
+   ============================================================ */
+.accordion-block{background:var(--paper-2)}
+.accordion-block .container{padding-top:40px;padding-bottom:40px}
+.acc-item{border-top:1px solid var(--rule)}
+.acc-item:last-child{border-bottom:1px solid var(--rule)}
+.acc-trigger{
+  display:flex;justify-content:space-between;align-items:center;
+  width:100%;background:none;border:none;cursor:pointer;
+  padding:22px 0;text-align:left;color:var(--ink);font-family:inherit;gap:16px;
+}
+.acc-title{
+  font-family:var(--display);font-size:clamp(26px,3.5vw,42px);
+  font-weight:600;line-height:1.15;letter-spacing:-0.02em;color:var(--ink);
+}
+.acc-icon{
+  font-size:30px;font-weight:300;line-height:1;
+  transition:transform 0.35s ease;flex-shrink:0;color:var(--accent);
+}
+.acc-item.open .acc-icon{transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height 0.45s ease}
+.acc-item.open .acc-body{max-height:3000px}
+.acc-body-inner{padding:0 0 30px}
+.acc-body p{font-size:clamp(16px,1.2vw,19px);line-height:1.7;margin-bottom:18px;color:var(--ink-2);max-width:68ch}
+.acc-body p.acc-q{font-style:italic;font-weight:600;color:var(--ink);border-left:3px solid var(--accent);padding-left:14px;margin-top:20px}
+
+/* ============================================================
+   FRUIT EXPAND (collapsible section inside fruit block)
+   ============================================================ */
+.fruit-expand{margin-top:32px}
+.fruit-expand-item{border-top:1px solid var(--rule)}
+.fruit-expand-trigger{
+  display:flex;justify-content:space-between;align-items:center;
+  width:100%;background:none;border:none;cursor:pointer;
+  padding:15px 0;text-align:left;color:var(--ink);font-family:inherit;gap:12px;
+}
+.fruit-expand-label{font-family:var(--mono);font-size:10px;letter-spacing:0.16em;text-transform:uppercase;color:var(--ink-soft)}
+.fruit-expand-icon{font-size:22px;line-height:1;transition:transform 0.35s ease;color:var(--accent);flex-shrink:0}
+.fruit-expand-item.open .fruit-expand-icon{transform:rotate(45deg)}
+.fruit-expand-body{max-height:0;overflow:hidden;transition:max-height 0.5s ease}
+.fruit-expand-item.open .fruit-expand-body{max-height:4000px}
+.fruit-expand-inner{padding:8px 0 30px}
+.fruit-expand-inner ul{list-style:none;padding:0;margin:0 0 22px}
+.fruit-expand-inner ul li{
+  padding:10px 0 10px 22px;position:relative;
+  font-size:clamp(14px,1vw,15.5px);line-height:1.55;
+  border-bottom:1px solid var(--rule);color:var(--ink-2);
+}
+.fruit-expand-inner ul li::before{
+  content:'·';position:absolute;left:0;
+  color:var(--accent);font-size:24px;line-height:1;top:8px;
+}
+.fruit-expand-inner p{font-size:clamp(14px,1.05vw,16px);line-height:1.65;margin-bottom:14px;color:var(--ink-2);max-width:60ch}
+.fruit-expand-inner .reflect-kicker{
+  display:block;font-family:var(--mono);font-size:10px;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--ink-soft);margin:22px 0 12px;
+}
+.fruit-expand-inner .reflect-item{
+  font-size:clamp(14px,1vw,15.5px);line-height:1.6;margin-bottom:12px;
+  padding-left:16px;border-left:2px solid var(--accent);color:var(--ink-2);
+}
 
 
