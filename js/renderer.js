@@ -358,13 +358,6 @@
     });
   }
 
-  window.scrollToBlock = function(idx) {
-    const blocksEls = document.querySelectorAll('.block');
-    if(blocksEls[idx]) {
-      blocksEls[idx].scrollIntoView({ behavior: 'smooth' });
-    }
-  }
-
   // ---------------- font / weight setup ----------------
   function initFonts(){}
 
@@ -463,48 +456,13 @@
 
   stage.addEventListener('scroll', checkInfinite, {passive:true});
   
-  // ---------------- smart single-swipe logic (mobile & desktop) ----------------
-  let isSwiping = false;
-  let touchStartY = 0;
-
-  function handleSingleScroll(direction) {
-    if (isSwiping) return;
+  // ---------------- smart single-swipe logic ----------------
+  window.scrollToBlock = function(idx) {
     const blocksEls = document.querySelectorAll('.block');
-    const mid = stage.scrollTop + (stage.clientHeight / 2);
-    let currentIdx = 0;
-    blocksEls.forEach((el, i) => {
-      if (el.offsetTop <= mid + 50) currentIdx = i;
-    });
-
-    const nextIdx = Math.max(0, Math.min(blocksEls.length - 1, currentIdx + direction));
-    if (nextIdx !== currentIdx) {
-      isSwiping = true;
-      window.scrollToBlock(nextIdx);
-      setTimeout(() => { isSwiping = false; }, 800);
+    if(blocksEls[idx]) {
+      blocksEls[idx].scrollIntoView({ behavior: 'smooth' });
     }
-  }
-
-  stage.addEventListener('wheel', (e) => {
-    if (Math.abs(e.deltaY) > 20) {
-      e.preventDefault();
-      handleSingleScroll(e.deltaY > 0 ? 1 : -1);
-    }
-  }, { passive: false });
-
-  stage.addEventListener('touchstart', (e) => {
-    touchStartY = e.touches[0].clientY;
-  }, { passive: true });
-
-  stage.addEventListener('touchmove', (e) => {
-    if (isSwiping) e.preventDefault();
-  }, { passive: false });
-
-  stage.addEventListener('touchend', (e) => {
-    const deltaY = touchStartY - e.changedTouches[0].clientY;
-    if (Math.abs(deltaY) > 40) {
-      handleSingleScroll(deltaY > 0 ? 1 : -1);
-    }
-  }, { passive: true });
+  };
 
   requestAnimationFrame(tickParallax);
   requestAnimationFrame(tickUI);
