@@ -509,7 +509,7 @@ body{
   align-items:center;
   overflow:hidden;
   scroll-snap-align:start;
-  scroll-snap-stop:normal;
+  scroll-snap-stop:always;
   opacity:0;
   transition:opacity 0.9s cubic-bezier(.2,.7,.2,1);
 }
