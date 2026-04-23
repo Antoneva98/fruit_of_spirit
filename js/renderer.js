@@ -404,7 +404,7 @@
             revealObserver.unobserve(e.target); 
           }
         });
-      }, {threshold: 0.12, rootMargin: '0px 0px 10% 0px'}); // Increased rootMargin for preload
+      }, {threshold: 0.12, root: stage, rootMargin: '0px'}); 
     }
     scope.querySelectorAll('.block').forEach(b => revealObserver.observe(b));
   }
@@ -413,9 +413,9 @@
   const MAX_CYCLES = 4;
   function checkInfinite(){
     if(cycleCount >= MAX_CYCLES) return;
-    const docH = document.documentElement.scrollHeight;
-    const sy = window.scrollY + window.innerHeight;
-    if(sy > docH - window.innerHeight * 1.5){
+    const docH = stage.scrollHeight;
+    const sy = stage.scrollTop + stage.clientHeight;
+    if(sy > docH - stage.clientHeight * 1.5){
       appendCycle();
     }
   }
@@ -424,8 +424,8 @@
   const progress = document.getElementById('progress');
   const chip = document.getElementById('chip');
   function tickUI(){
-    const docH = document.documentElement.scrollHeight - window.innerHeight;
-    const p = docH > 0 ? window.scrollY / docH : 0;
+    const docH = stage.scrollHeight - stage.clientHeight;
+    const p = docH > 0 ? stage.scrollTop / docH : 0;
     progress.style.transform = `scaleX(${p})`;
 
     // current block label
@@ -461,7 +461,7 @@
     }, 150);
   });
 
-  window.addEventListener('scroll', checkInfinite, {passive:true});
+  stage.addEventListener('scroll', checkInfinite, {passive:true});
   requestAnimationFrame(tickParallax);
   requestAnimationFrame(tickUI);
 })();
