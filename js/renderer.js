@@ -254,7 +254,9 @@
           ? `<ul>${b.expand.items.map(i => `<li>${i}</li>`).join('')}</ul>`
           : '';
         const extraBody = b.expand.body
-          ? b.expand.body.map(p => `<p>${p}</p>`).join('')
+          ? b.expand.body.map(p =>
+              /^\s*<(div|ul|ol|blockquote|figure|table|h[1-6])\b/i.test(p) ? p : `<p>${p}</p>`
+            ).join('')
           : '';
         const reflect = b.expand.reflect
           ? `<span class="reflect-kicker">Пороздумуйте</span>${b.expand.reflect.map(r => `<div class="reflect-item">${r}</div>`).join('')}`
