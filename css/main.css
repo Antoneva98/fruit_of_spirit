@@ -1301,6 +1301,7 @@ p{margin:0 0 16px;font-size:clamp(15px,1.05vw,17px);line-height:1.6;color:var(--
   font-size:clamp(17px,1.45vw,21px);line-height:1.45;
   color:var(--ink);max-width:54ch;
 }
+.fruit-expand-inner .v-quote strong{font-weight:500;color:var(--accent)}
 .fruit-expand-inner .v-cite{
   display:block;margin-top:14px;font-style:normal;
   font-family:var(--mono);font-size:10px;letter-spacing:0.16em;
